@@ -4,6 +4,8 @@
 
 Website made using React JS and Tailwind CSS.
 
+A simple website for a cake decorator in Wellington to showcase their work.
+
 Install dependencies: 
 
 `````````
