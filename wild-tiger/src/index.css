@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navlink {
+  @apply p-7 hover:text-cyan-dark transition duration-200 focus:text-cyan-dark;
+}
+
+.form-input {
+  @apply block
+  w-full
+  appearance-none
+  bg-transparent
+  rounded
+  focus:bg-gray-50
+  focus:outline-none;
+}
+
+.form-label {
+  @apply absolute
+  top-0
+  origin-0
+  duration-300
+  uppercase
+  text-sm
+  font-montserrat
+  font-extrabold
+  tracking-wide;
+}
+
+input:focus-within ~ label,
+input:not(:placeholder-shown) ~ label,
+textarea:focus-within ~ label,
+textarea:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-6 text-cyan-dark;
+}
