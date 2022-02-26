@@ -1,7 +1,0 @@
-{
-    "git.ignoreLimitWarning": true,
-    "tailwindCSS.emmetCompletions": true,
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
-      }
-}
