@@ -3,10 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/home';
 import About from './pages/about';
-import Contact from './pages/contact';
-import Faq from './pages/faq';
+import Orders from './pages/orders';
+import Help from './pages/help';
 import Flavours from './pages/flavours';
 import Gallery from './pages/gallery';
+import Privacy from './pages/privacy';
 import Dropdown from './components/Dropdown';
 
 function App() {
@@ -39,8 +40,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/flavours" element={<Flavours />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/faq" element={<Faq />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Routes>
     </>
   );

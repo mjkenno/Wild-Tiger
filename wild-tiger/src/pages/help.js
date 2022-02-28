@@ -1,7 +1,7 @@
 import React from 'react'
 import FaqItems from '../components/FaqItems'
 
-const Faq = () => {
+const Help = () => {
     return (
         <div className="flex flex-col px-8 pt-10 lg:px-56">
             <FaqItems />
@@ -9,4 +9,4 @@ const Faq = () => {
     )
 }
 
-export default Faq
+export default Help

@@ -1,42 +1,69 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import OrdersList from '../components/OrdersList';
 
-const ContactForm = () => {
+const OrderForm = () => {
+  // Initial form state object to pass initially and to reset the form after submittion.
   const initialFormState = {
     name: '',
     surname: '',
     email: '',
     phone: '',
+    size: '',
+    flavour: '',
     message: '',
   };
 
   const [formState, setformState] = useState(initialFormState);
   const [message, setMessage] = useState(null);
+  const [numberOfOrders, setNumberOfOrders] = useState(0);
 
+  const url = 'http://localhost:1337/api/orders/';
+
+  // Email validation using RegEx
   const validateEmail = (email) => {
     // eslint-disable-next-line
     const emailRegEx = RegExp(/^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/);
     return emailRegEx.test(email);
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    const payload = { ...formState };
+    // Setting the form state as the payload for Strapi. Needed to be under the data property, otherwise the POST request was failing.
+    const strapiPayload = { data: formState };
 
-    if (!validateEmail(payload['email'])) {
+    if (!validateEmail(formState['email'])) {
       setMessage({
         class: 'bg-red-500 opacity-80',
         text: "Oops, looks like you're email isn't in the right format.",
       });
       return;
     }
-    setMessage({
-      class: 'bg-cyan-dark opacity-80',
-      text: 'Thank you! I will be get back to you as soon as I can.',
-    });
-    // e.currentTarget.submit();
+
+    try {
+      // POST to strapi, if response is OK update the order count and display thank you message.
+      const response = await axios.post(url, strapiPayload);
+      if (response.statusText === 'OK') {
+        setNumberOfOrders(numberOfOrders + 1);
+        setMessage({
+          class: 'bg-cyan-dark opacity-80',
+          text: 'Thank you! I will be get back to you as soon as I can.',
+        });
+      }
+    } catch (error) {
+      // If there is an error - display the error message.
+      console.log(error);
+      setMessage({
+        class: 'bg-red-500 opacity-80',
+        text: `I'm sorry something went wrong - ${error.message}`,
+      });
+      return;
+    }
+
     setformState(initialFormState);
   };
 
+  // onChange update the form state by shallow copying, updating the copy and setting the copy as the new state. 
   const updateForm = (e) => {
     const { id, value } = e.target;
     const updatedFormState = { ...formState };
@@ -56,7 +83,7 @@ const ContactForm = () => {
         </div>
       )}
 
-      <div className="flex justify-center items-center my-12">
+      <div className="flex justify-center items-center mt-12 mb-6">
         <form
           onSubmit={submitForm}
           className="flex-col w-5/6 md:w-4/6 lg:w-3/6 m-4 text-gray-500 items-center"
@@ -128,6 +155,45 @@ const ContactForm = () => {
             </div>
           </div>
 
+          <div className="flex w-full">
+            <select
+              id="size"
+              onChange={updateForm}
+              value={formState.size}
+              required
+              className="w-1/2 border-b mx-5 my-2 py-2 bg-gray-50 font-montserrat uppercase text-sm font-semibold rounded outline-none focus-within:border-cyan-dark"
+            >
+              <option value="" disabled>
+                Size *
+              </option>
+              <option value='6"'>6"</option>
+              <option value='8"'>8"</option>
+              <option value='10"'>10"</option>
+            </select>
+
+            <select
+              id="flavour"
+              onChange={updateForm}
+              value={formState.flavour}
+              required
+              className="w-1/2 border-b mx-5 my-2 py-2 bg-gray-50 font-montserrat uppercase text-sm font-semibold rounded outline-none focus-within:border-cyan-dark"
+            >
+              <option value="" disabled>
+                Flavour *
+              </option>
+              <option value="Coconut & Raspberry">Coconut & Raspberry</option>
+              <option value="Orange & Earl Grey">Orange & Earl Grey</option>
+              <option value="Red Velvet">Red Velvet</option>
+              <option value="Chocolate & Peanut Butter">
+                Chocolate & Peanut Butter
+              </option>
+              <option value="Coffee & Hazelnut">Coffee & Hazelnut</option>
+              <option value="Classic Vanilla">Coconut & Raspberry</option>
+              <option value="Carrot & Walnut">Carrot & Walnut</option>
+              <option value="Oreo">Oreo</option>
+            </select>
+          </div>
+
           <div className="relative my-4 border-b-2 focus-within:border-cyan-dark m-6 w-6/6">
             <textarea
               onChange={updateForm}
@@ -150,10 +216,9 @@ const ContactForm = () => {
               id="message"
               value={formState.message}
               placeholder=" "
-              required
             ></textarea>
             <label className="form-label" htmlFor="messsage">
-              MESSAGE *
+              MESSAGE
             </label>
           </div>
 
@@ -167,8 +232,9 @@ const ContactForm = () => {
           </div>
         </form>
       </div>
+      <OrdersList numberOfOrders={numberOfOrders} />
     </>
   );
 };
 
-export default ContactForm;
+export default OrderForm;

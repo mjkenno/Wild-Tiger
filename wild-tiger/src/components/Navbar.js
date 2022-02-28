@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { HiMenu } from "react-icons/hi";
+import { HiMenu } from 'react-icons/hi';
 
-const Navbar = ({toggle}) => {
+const Navbar = ({ toggle }) => {
   return (
     <nav
       className="flex md:flex-col justify-between md:justify-center items-center h-20 md:h-44 bg-gray-50 text-black shadow-sm mt-2"
@@ -14,10 +14,13 @@ const Navbar = ({toggle}) => {
       >
         Wild Tiger Cakes
       </NavLink>
-      <div className="px-4 cursor-pointer text-gray-600 md:hidden" onClick={toggle}>
+      <div
+        className="px-4 cursor-pointer text-gray-600 md:hidden"
+        onClick={toggle}
+      >
         <HiMenu size={46} />
       </div>
-      
+
       <div className="font-montserrat text-xl md:block hidden pb-2">
         <NavLink className="navlink" to="/">
           Home
@@ -31,11 +34,14 @@ const Navbar = ({toggle}) => {
         <NavLink className="navlink" to="/flavours">
           Flavours
         </NavLink>
-        <NavLink className="navlink" to="/contact">
-          Contact
+        <NavLink className="navlink" to="/orders">
+          Orders
         </NavLink>
-        <NavLink className="navlink" to="/faq">
-          FAQ
+        <NavLink className="navlink" to="/help">
+          Help
+        </NavLink>
+        <NavLink className="navlink" to="/privacy">
+          Privacy Policy
         </NavLink>
       </div>
     </nav>

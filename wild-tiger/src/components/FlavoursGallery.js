@@ -3,41 +3,49 @@ import React from 'react';
 const FlavourGallery = () => {
   const flavours = [
     {
+      id: 1,
       name: 'Coconut & Raspberry',
       description:
         'Coconut sponge baked with whole raspberries, layered with raspberry compote and finished with raspberry buttercream.',
     },
     {
+      id: 2,
       name: 'Orange & Earl Grey Tea',
       description:
         'Orange sponge drizzled with orange syrup, layered with a citrus curd and finished with an Earl Grey tea buttercream.',
     },
     {
+      id: 3,
       name: 'Red Velvet',
       description:
         'Classic red velvet sponge, layered and finished with a buttermilk and white chocolate buttercream.',
     },
     {
+      id: 4,
       name: 'Choclate & Peanut Butter',
       description:
         'Dark chocolate sponge layered with peanut butter icing and sticky caramel and finished with more peanut butter icing.',
     },
     {
+      id: 5,
       name: 'Coffee & Hazelnut',
       description:
         'Coffee and hazelnut sponge, layered with plum jam and finished with a dark chocolate icing.',
     },
     {
+      id: 6,
       name: 'Carrot & Walnut',
       description:
         'Lightly spiced carrot cake with walnuts and orange, layered and finished with a velvety cream cheese icing.',
     },
     {
+      id: 7,
         name: 'Classic Vanilla',
         description:
           'Classic vanilla sponge filled and finished with a vanilla bean icing.',
     },
     {
+      id: 8,
       name: 'Oreo',
       description:
         'Oreo overload! - Oreo sponge, layered and filled with Oreo icing!',
@@ -47,7 +55,7 @@ const FlavourGallery = () => {
   return (
     <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4 lg:gap-x-12 md:gap-y-8 p-6 lg:p-12">
      {flavours.map((flavour) => (
-          <div>
+          <div key={flavour.id}>
           <h2 className="text-base md:text-lg lg:text-2xl font-montserrat p-1 mt-2 text-center text-cyan-dark">
             {flavour.name}
           </h2>
