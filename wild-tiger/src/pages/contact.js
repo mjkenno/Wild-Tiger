@@ -1,8 +1,8 @@
 import React from 'react';
-import OrderForm from '../components/OrderForm';
+import ContactForm from '../components/ContactForm';
 import Socials from '../components/Socials';
 
-const Orders = () => {
+const Contact = () => {
   return (
     <>
       <Socials />
@@ -11,9 +11,9 @@ const Orders = () => {
         on the horizon, please get in touch and I will get back to you as soon
         as I can to see how I can help.
       </p>
-      <OrderForm />
+      <ContactForm />
     </>
   );
 };
 
-export default Orders;
+export default Contact;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Cards = () => {
-  const [photos, setPhotos] = useState([]);
+  const [images, setImages] = useState([]);
   const [error, setError] = useState('');
 
   const localHost = 'http://localhost:1337';
@@ -12,7 +12,7 @@ const Cards = () => {
     const fetchImages = async () => {
       const response = await axios.get(url);
       // Not sure why data object is nested? Usually just response.data?
-      setPhotos(response.data.data);
+      setImages(response.data.data);
     };
 
     fetchImages().catch((err) => {
@@ -24,7 +24,7 @@ const Cards = () => {
 
   return (
     <div className="grid grid-cols-12 gap-4 md:gap-8 p-4 md:p-12">
-      {photos.map((photo) => (
+      {images.map((photo) => (
         <div
           key={photo.id}
           className="w-full col-span-6 md:col-span-4 rounded overflow-hidden shadow-lg mr-4 relative flex flex-col"

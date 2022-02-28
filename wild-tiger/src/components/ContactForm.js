@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import OrdersList from '../components/OrdersList';
+import OrdersList from './OrdersList';
 
-const OrderForm = () => {
+const ContactForm = () => {
   // Initial form state object to pass initially and to reset the form after submittion.
   const initialFormState = {
     name: '',
@@ -160,11 +160,10 @@ const OrderForm = () => {
               id="size"
               onChange={updateForm}
               value={formState.size}
-              required
               className="w-1/2 border-b mx-5 my-2 py-2 bg-gray-50 font-montserrat uppercase text-sm font-semibold rounded outline-none focus-within:border-cyan-dark"
             >
               <option value="" disabled>
-                Size *
+                Size
               </option>
               <option value='6"'>6"</option>
               <option value='8"'>8"</option>
@@ -175,11 +174,10 @@ const OrderForm = () => {
               id="flavour"
               onChange={updateForm}
               value={formState.flavour}
-              required
               className="w-1/2 border-b mx-5 my-2 py-2 bg-gray-50 font-montserrat uppercase text-sm font-semibold rounded outline-none focus-within:border-cyan-dark"
             >
               <option value="" disabled>
-                Flavour *
+                Flavour
               </option>
               <option value="Coconut & Raspberry">Coconut & Raspberry</option>
               <option value="Orange & Earl Grey">Orange & Earl Grey</option>
@@ -217,7 +215,7 @@ const OrderForm = () => {
               value={formState.message}
               placeholder=" "
             ></textarea>
-            <label className="form-label" htmlFor="messsage">
+            <label className="form-label" htmlFor="message">
               MESSAGE
             </label>
           </div>
@@ -237,4 +235,4 @@ const OrderForm = () => {
   );
 };
 
-export default OrderForm;
+export default ContactForm;

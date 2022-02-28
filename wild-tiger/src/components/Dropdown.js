@@ -23,14 +23,11 @@ const Dropdown = ({ isOpen, toggle }) => {
       <NavLink className="navlink" to="/flavours">
         Flavours
       </NavLink>
-      <NavLink className="navlink" to="/orders">
-        Orders
+      <NavLink className="navlink" to="/contact">
+        Contact
       </NavLink>
-      <NavLink className="navlink" to="/help">
-        Help
-      </NavLink>
-      <NavLink className="navlink" to="/privacy">
-        Privacy Policy
+      <NavLink className="navlink" to="/faq">
+        FAQ
       </NavLink>
     </div>
   );
